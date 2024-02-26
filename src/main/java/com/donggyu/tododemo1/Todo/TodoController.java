@@ -1,5 +1,6 @@
 package com.donggyu.tododemo1.Todo;
 
+import com.donggyu.tododemo1.ResponseErrorDetail;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,16 +35,17 @@ public class TodoController {
         try {
             return new ResponseEntity<>(todoService.updateTodo(id, todo), HttpStatus.OK);
         } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ResponseErrorDetail(e.getMessage()), HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteTodo(@PathVariable(value = "id") Long id) {
         try {
+            todoService.deleteTodo(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (EntityNotFoundException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new ResponseErrorDetail(e.getMessage()), HttpStatus.NOT_FOUND);
         }
     }
 }
