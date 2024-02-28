@@ -19,8 +19,8 @@ public class Todo {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "description", nullable = false)
-    private String description;
+    @Column(name = "content", nullable = false)
+    private String content;
 
     @Column(name = "deadline", nullable = true)
     private Date deadline;

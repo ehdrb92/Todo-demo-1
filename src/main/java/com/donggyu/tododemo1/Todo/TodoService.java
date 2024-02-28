@@ -21,9 +21,22 @@ public class TodoService {
         return todoRepository.findAll();
     }
 
-    public Todo updateTodo(Long id, Todo todo) {
+    public boolean updateTodo(Long id, TodoUpdate todoUpdate) {
         todoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Todo Not Found"));
-        return todoRepository.save(todo);
+        int updateCount = todoRepository.updateTodoById(id, todoUpdate.getContent(), todoUpdate.getDeadline());
+        if (updateCount == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean completeTodo(Long id) {
+        todoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Todo Not Found"));
+        int updateCount = todoRepository.completeTodoById(id, true);
+        if (updateCount == 1) {
+            return true;
+        }
+        return false;
     }
 
     public void deleteTodo(Long id) {
