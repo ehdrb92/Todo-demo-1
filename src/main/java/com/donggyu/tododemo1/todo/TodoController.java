@@ -1,4 +1,4 @@
-package com.donggyu.tododemo1.Todo;
+package com.donggyu.tododemo1.todo;
 
 import com.donggyu.tododemo1.ResponseErrorDetail;
 import jakarta.persistence.EntityNotFoundException;

@@ -1,4 +1,4 @@
-package com.donggyu.tododemo1.Todo;
+package com.donggyu.tododemo1.todo;
 
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,11 +12,11 @@ import java.util.Date;
 public interface TodoRepository extends JpaRepository<Todo, Long> {
     @Modifying
     @Transactional
-    @Query("UPDATE TodoUpdate t SET t.content = :content, t.deadline = :deadline WHERE t.id = :id")
+    @Query("UPDATE todos t SET t.content = :content, t.deadline = :deadline WHERE t.id = :id")
     int updateTodoById(Long id, String content, Date deadline);
 
     @Modifying
     @Transactional
-    @Query("UPDATE Todo t SET t.complete = :complete WHERE t.id = :id")
-    int completeTodoById(Long id, boolean complete);
+    @Query("UPDATE todos t SET t.isComplete = :isComplete WHERE t.id = :id")
+    int completeTodoById(Long id, Boolean isComplete);
 }

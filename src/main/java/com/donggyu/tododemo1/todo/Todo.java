@@ -1,4 +1,4 @@
-package com.donggyu.tododemo1.Todo;
+package com.donggyu.tododemo1.todo;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
