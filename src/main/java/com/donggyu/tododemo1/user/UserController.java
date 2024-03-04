@@ -48,4 +48,14 @@ public class UserController {
             return new ResponseEntity<>(new ResponseErrorDetail(e.getMessage()), HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody UserLogin userLogin) {
+        boolean loginResult = userService.loginUser(userLogin);
+        if (loginResult) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new ResponseErrorDetail("Login Fail. Check username & password"), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

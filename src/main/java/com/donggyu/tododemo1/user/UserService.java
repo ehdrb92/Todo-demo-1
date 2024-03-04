@@ -36,4 +36,12 @@ public class UserService {
         userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User Not Found"));
         userRepository.deleteById(id);
     }
+
+    public boolean loginUser(UserLogin userLogin) {
+        User user = userRepository.findByUsername(userLogin.getUsername());
+        if (user == null) {
+            return false;
+        }
+        return passwordEncoder.matches(userLogin.getPassword(), user.getPassword());
+    }
 }
