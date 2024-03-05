@@ -2,10 +2,8 @@ package com.donggyu.tododemo1.user;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
-import org.hibernate.DuplicateMappingException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,9 +13,9 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public User createUser(UserJoinDTO userJoinDTO) {
-        Boolean isExist = userRepository.existByUsername(userJoinDTO.getUsername());
+        boolean isExist = userRepository.existsByUsername(userJoinDTO.getUsername());
 
-        if (!isExist) {
+        if (isExist) {
             throw new DataIntegrityViolationException("Username Dulicate");
         }
 
@@ -56,6 +54,6 @@ public class UserService {
         if (user == null) {
             return false;
         }
-        return passwordEncoder.matches(userLoginDTO.getPassword(), user.getPassword());
+        return bCryptPasswordEncoder.matches(userLoginDTO.getPassword(), user.getPassword());
     }
 }

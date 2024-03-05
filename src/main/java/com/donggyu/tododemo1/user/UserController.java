@@ -3,6 +3,7 @@ package com.donggyu.tododemo1.user;
 import com.donggyu.tododemo1.ResponseErrorDetail;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,14 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private UserService userService;
 
-    @PostMapping
-    public User createUser(@RequestBody UserJoinDTO userJoinDTO) {
-        return userService.createUser(userJoinDTO);
+    @PostMapping("/join")
+    public ResponseEntity<?> createUser(@RequestBody UserJoinDTO userJoinDTO) {
+        try {
+            return new ResponseEntity<>(userService.createUser(userJoinDTO), HttpStatus.CREATED);
+        } catch (DataIntegrityViolationException e) {
+            return new ResponseEntity<>(new ResponseErrorDetail(e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping("/{id}")
@@ -49,7 +55,8 @@ public class UserController {
         }
     }
 
-    @PostMapping("/login")
+    // 사용 일시중지
+    //@PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody UserLoginDTO userLoginDTO) {
         boolean loginResult = userService.loginUser(userLoginDTO);
         if (loginResult) {
