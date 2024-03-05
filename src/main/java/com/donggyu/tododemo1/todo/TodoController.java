@@ -32,9 +32,9 @@ public class TodoController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateTodo(@PathVariable(value = "id") Long id, @RequestBody TodoUpdate todoUpdate) {
+    public ResponseEntity<?> updateTodo(@PathVariable(value = "id") Long id, @RequestBody TodoUpdateDTO todoUpdateDTO) {
         try {
-            boolean updateResult = todoService.updateTodo(id, todoUpdate);
+            boolean updateResult = todoService.updateTodo(id, todoUpdateDTO);
             if (updateResult) {
                 HttpHeaders httpHeaders = new HttpHeaders();
                 httpHeaders.set("Location", String.format("/api/v1/todos/%d", id));

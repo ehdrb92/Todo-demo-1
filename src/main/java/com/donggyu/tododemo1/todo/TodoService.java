@@ -21,9 +21,9 @@ public class TodoService {
         return todoRepository.findAll();
     }
 
-    public boolean updateTodo(Long id, TodoUpdate todoUpdate) {
+    public boolean updateTodo(Long id, TodoUpdateDTO todoUpdateDTO) {
         todoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Todo Not Found"));
-        int updateCount = todoRepository.updateTodoById(id, todoUpdate.getContent(), todoUpdate.getDeadline());
+        int updateCount = todoRepository.updateTodoById(id, todoUpdateDTO.getContent(), todoUpdateDTO.getDeadline());
         if (updateCount == 1) {
             return true;
         }

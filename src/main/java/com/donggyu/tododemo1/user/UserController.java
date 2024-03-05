@@ -25,7 +25,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable(value = "id") Long id, @RequestBody UserUpdate userUpdate) {
+    public ResponseEntity<?> updateUser(@PathVariable(value = "id") Long id, @RequestBody UserUpdateDTO userUpdate) {
         try {
             boolean updateResult = userService.updateUser(id, userUpdate);
             if (updateResult) {
@@ -50,8 +50,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody UserLogin userLogin) {
-        boolean loginResult = userService.loginUser(userLogin);
+    public ResponseEntity<?> loginUser(@RequestBody UserLoginDTO userLoginDTO) {
+        boolean loginResult = userService.loginUser(userLoginDTO);
         if (loginResult) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

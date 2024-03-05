@@ -13,8 +13,6 @@ import java.util.Date;
 @Entity(name = "users")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +27,9 @@ public class User {
 
     @Column(name = "email", nullable = false)
     private String email;
+
+    @Column(name = "role", nullable = false)
+    private String role;
 
     @Column(name = "created_at", nullable = false)
     @CreationTimestamp

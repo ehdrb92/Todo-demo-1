@@ -21,7 +21,7 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User Not Found"));
     }
 
-    public boolean updateUser(Long id, UserUpdate user) {
+    public boolean updateUser(Long id, UserUpdateDTO user) {
         userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User Not Found"));
         int updateCount = userRepository.updateUserById(id, user.getEmail());
         if (updateCount == 1) {
@@ -35,11 +35,11 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public boolean loginUser(UserLogin userLogin) {
-        User user = userRepository.findByUsername(userLogin.getUsername());
+    public boolean loginUser(UserLoginDTO userLoginDTO) {
+        User user = userRepository.findByUsername(userLoginDTO.getUsername());
         if (user == null) {
             return false;
         }
-        return passwordEncoder.matches(userLogin.getPassword(), user.getPassword());
+        return passwordEncoder.matches(userLoginDTO.getPassword(), user.getPassword());
     }
 }

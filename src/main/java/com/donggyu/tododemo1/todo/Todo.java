@@ -13,8 +13,6 @@ import java.util.Date;
 @Entity(name = "todos")
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Todo {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
