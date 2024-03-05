@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    @Transactional
+    Boolean existByUsername(String username);
+
     @Modifying
     @Transactional
     @Query("UPDATE users u SET u.email = :email WHERE u.id = :id")
