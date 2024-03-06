@@ -54,15 +54,4 @@ public class UserController {
             return new ResponseEntity<>(new ResponseErrorDetail(e.getMessage()), HttpStatus.NOT_FOUND);
         }
     }
-
-    // 사용 일시중지
-    //@PostMapping("/login")
-    public ResponseEntity<?> loginUser(@RequestBody UserLoginDTO userLoginDTO) {
-        boolean loginResult = userService.loginUser(userLoginDTO);
-        if (loginResult) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(new ResponseErrorDetail("Login Fail. Check username & password"), HttpStatus.BAD_REQUEST);
-        }
-    }
 }

@@ -48,12 +48,4 @@ public class UserService {
         userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User Not Found"));
         userRepository.deleteById(id);
     }
-
-    public boolean loginUser(UserLoginDTO userLoginDTO) {
-        User user = userRepository.findByUsername(userLoginDTO.getUsername());
-        if (user == null) {
-            return false;
-        }
-        return bCryptPasswordEncoder.matches(userLoginDTO.getPassword(), user.getPassword());
-    }
 }
