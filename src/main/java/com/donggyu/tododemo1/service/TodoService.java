@@ -1,5 +1,8 @@
-package com.donggyu.tododemo1.todo;
+package com.donggyu.tododemo1.service;
 
+import com.donggyu.tododemo1.todo.Todo;
+import com.donggyu.tododemo1.repository.TodoRepository;
+import com.donggyu.tododemo1.todo.TodoUpdateDTO;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

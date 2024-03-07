@@ -1,5 +1,6 @@
-package com.donggyu.tododemo1.user;
+package com.donggyu.tododemo1.repository;
 
+import com.donggyu.tododemo1.user.User;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

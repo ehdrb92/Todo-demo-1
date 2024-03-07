@@ -1,5 +1,8 @@
-package com.donggyu.tododemo1.user;
+package com.donggyu.tododemo1.service;
 
+import com.donggyu.tododemo1.repository.UserRepository;
+import com.donggyu.tododemo1.user.CustomUserDetails;
+import com.donggyu.tododemo1.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
