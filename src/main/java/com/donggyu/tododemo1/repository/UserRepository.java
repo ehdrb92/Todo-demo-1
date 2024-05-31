@@ -21,3 +21,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("SELECT u FROM users u WHERE u.username = :username")
     User findByUsername(String username);
 }
+
+/*
+* TODO: Repository VS DAO의 차이점에 대해서 알아보자
+*
+*
+* */
